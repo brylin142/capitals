@@ -8,6 +8,7 @@ This is a data visualization of the 2017-2018 Washington Capitals roster showing
 - [ ] Each bar will have cells corresponding to the number of seasons played with the team
 - [ ] Different sections depending on how player was acquired
 - [ ] The number of minutes played each season will correspond to a different shade of color
+- [ ] Stats for inidividual player will be displayed when hovering over a season
 - [ ] The data will be displayed using transitions
 - [ ] Adequate styling
 
