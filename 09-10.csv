@@ -1,5 +1,5 @@
-Rk,Player,Age,Pos,GP,G,A,PTS,+/-,PIM,TOI,ATOI
-1,Alex Ovechkin\ovechal01,24,LW,72,50,59,109,45,89,1569,21:48
-2,Nicklas Backstrom\backsni02,22,C,82,33,68,101,37,50,1677,20:27
-23,John Carlson\carlsjo01,20,D,22,1,5,6,11,8,335,15:15
-31,Jay Beagle\beaglja01,24,C,7,1,1,2,-1,2,65,9:16
+Player,Age,Pos,GP,G,A,PTS,+/-,PIM,TOI,ATOI
+Alex Ovechkin\ovechal01,24,LW,72,50,59,109,45,89,1569,21:48
+Nicklas Backstrom\backsni02,22,C,82,33,68,101,37,50,1677,20:27
+Jay Beagle\beaglja01,24,C,7,1,1,2,-1,2,65,9:16
+John Carlson\carlsjo01,20,D,22,1,5,6,11,8,335,15:15
