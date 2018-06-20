@@ -8,36 +8,55 @@ const createElements = (svg, elem) => {
     .range(["#EEEEEE", "#992932"]);
 
 
-  let textColor = d3.scale.ordinal()
+  let textColor = d3.scale.quantize()
     .domain([0, 3500])
     .range(["black", "#EEEEEE"]);
 
   let rect = elemEnter.append("rect")
     .attr("width", 40)
     .attr("height", 40)
-    .attr("y", (d, i) => (i * 50) + 100)
     .attr("fill", d => color(d.TOI))
-    .attr("text-align", "center")
-    .on("mouseover", function (d) {
-      svg.select("g.overlays")
-        .append("rect")
-        .attr("width", 300)
-        .attr("height", 300)
-        .attr("fill", color(d.TOI));
-    })
-    .on("mouseout", function (d) {
-      svg.select("g.overlays rect")
-        .remove();
-    });
+    .attr("y", -100)
+    .transition()
+      .duration(1000)
+      .attr("y", (d, i) => (i * 50) + 100);
+
+    // .on("mouseover", function (d) {
+    //   console.log(d)
+    //   let overlay = svg.select("g.overlays")
+    //     .append("rect")
+    //     .attr("width", 300)
+    //     .attr("height", 300)
+    //     .attr("x", -150)
+    //     .attr("y", (d, i) => (i * 50) + 100)
+    //     .attr("fill", color(d.TOI));
+
+    //   overlay.append("text")
+    //     .attr("x", 100)
+    //     .attr("y", 50)
+    //     .attr("fill", textColor(d.TOI))
+    //     .text(function (d) {
+    //       return d.G;
+    //     });
+
+
+    // })
+    // .on("mouseout", function (d) {
+    //   svg.select("g.overlays rect")
+    //     .remove();
+    // });
 
   elemEnter.append("text")
     .attr("x", 6)
-    .attr("y", (d, i) => (i * 50) + 125)
+    .attr("y", -100)
     .attr("fill", d => textColor(d.TOI))
     .attr("font-weight", 200)
     .text(function (d) {
       return d.TOI;
-    });
+    })
+    .transition()
+      .duration(1000)
+      .attr("y", (d, i) => (i * 50) + 125);
 };
 
 const createOverlays = svg => {
@@ -63,7 +82,6 @@ const season18 = () => {
     elem.enter()
       .append("text")
       .attr("x", 60)
-      // .attr("x", 500)
       .attr("y", (d, i) => (i * 50) + 125)
       .attr("fill", "black")
       .attr("font-weight", 200)
@@ -173,7 +191,7 @@ const season11 = () => {
 };
 
 const season10 = () => {
-  let svg = d3.select(".chart11")
+  let svg = d3.select(".chart10")
     .append("svg")
     .attr("width", 60)
     .attr("height", 1000);
@@ -187,7 +205,7 @@ const season10 = () => {
 };
 
 const season09 = () => {
-  let svg = d3.select(".chart11")
+  let svg = d3.select(".chart09")
     .append("svg")
     .attr("width", 60)
     .attr("height", 1000);
@@ -201,7 +219,7 @@ const season09 = () => {
 };
 
 const season08 = () => {
-  let svg = d3.select(".chart11")
+  let svg = d3.select(".chart08")
     .append("svg")
     .attr("width", 60)
     .attr("height", 1000);
@@ -215,7 +233,7 @@ const season08 = () => {
 };
 
 const season07 = () => {
-  let svg = d3.select(".chart11")
+  let svg = d3.select(".chart07")
     .append("svg")
     .attr("width", 60)
     .attr("height", 1000);
@@ -229,7 +247,7 @@ const season07 = () => {
 };
 
 const season06 = () => {
-  let svg = d3.select(".chart11")
+  let svg = d3.select(".chart06")
     .append("svg")
     .attr("width", 60)
     .attr("height", 1000);
