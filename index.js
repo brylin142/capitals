@@ -1,5 +1,4 @@
 const createElements = (svg, elem) => {
-  
   let elemEnter = elem.enter()
     .append("g");
 
@@ -16,6 +15,7 @@ const createElements = (svg, elem) => {
     .attr("width", 40)
     .attr("height", 40)
     .attr("fill", d => color(d.TOI))
+    .attr("x", 150)
     .attr("y", -100)
     .transition()
       .duration(1000)
@@ -47,7 +47,7 @@ const createElements = (svg, elem) => {
     // });
 
   elemEnter.append("text")
-    .attr("x", 6)
+    .attr("x", 156)
     .attr("y", -100)
     .attr("fill", d => textColor(d.TOI))
     .attr("font-weight", 200)
@@ -71,7 +71,7 @@ const season18 = () => {
   let svg = d3.select(".chart18")
     .append("svg")
     .attr("width", 200)
-    .attr("height", 1300);
+    .attr("height", 1400);
   
   createOverlays(svg);
   
@@ -81,7 +81,7 @@ const season18 = () => {
     
     elem.enter()
       .append("text")
-      .attr("x", 60)
+      .attr("x", 210)
       .attr("y", (d, i) => (i * 50) + 125)
       .attr("fill", "black")
       .attr("font-weight", 200)
@@ -95,7 +95,7 @@ const season18 = () => {
 const season17 = () => {
   let svg = d3.select(".chart17")
     .append("svg")
-    .attr("width", 60)
+    .attr("width", 50)
     .attr("height", 1000);
 
   createOverlays(svg);
@@ -109,7 +109,7 @@ const season17 = () => {
 const season16 = () => {
   let svg = d3.select(".chart16")
     .append("svg")
-    .attr("width", 60)
+    .attr("width", 50)
     .attr("height", 1000);
 
   createOverlays(svg);
@@ -123,7 +123,7 @@ const season16 = () => {
 const season15 = () => {
   let svg = d3.select(".chart15")
     .append("svg")
-    .attr("width", 60)
+    .attr("width", 50)
     .attr("height", 1000);
 
   createOverlays(svg);
@@ -137,7 +137,7 @@ const season15 = () => {
 const season14 = () => {
   let svg = d3.select(".chart14")
     .append("svg")
-    .attr("width", 60)
+    .attr("width", 50)
     .attr("height", 1000);
 
   createOverlays(svg);
@@ -151,7 +151,7 @@ const season14 = () => {
 const season13 = () => {
   let svg = d3.select(".chart13")
     .append("svg")
-    .attr("width", 60)
+    .attr("width", 50)
     .attr("height", 1000);
 
   createOverlays(svg);
@@ -165,7 +165,7 @@ const season13 = () => {
 const season12 = () => {
   let svg = d3.select(".chart12")
     .append("svg")
-    .attr("width", 60)
+    .attr("width", 50)
     .attr("height", 1000);
 
   createOverlays(svg);
@@ -179,7 +179,7 @@ const season12 = () => {
 const season11 = () => {
   let svg = d3.select(".chart11")
     .append("svg")
-    .attr("width", 60)
+    .attr("width", 50)
     .attr("height", 1000);
 
   createOverlays(svg);
@@ -193,7 +193,7 @@ const season11 = () => {
 const season10 = () => {
   let svg = d3.select(".chart10")
     .append("svg")
-    .attr("width", 60)
+    .attr("width", 50)
     .attr("height", 1000);
 
   createOverlays(svg);
@@ -207,7 +207,7 @@ const season10 = () => {
 const season09 = () => {
   let svg = d3.select(".chart09")
     .append("svg")
-    .attr("width", 60)
+    .attr("width", 50)
     .attr("height", 1000);
 
   createOverlays(svg);
@@ -221,7 +221,7 @@ const season09 = () => {
 const season08 = () => {
   let svg = d3.select(".chart08")
     .append("svg")
-    .attr("width", 60)
+    .attr("width", 50)
     .attr("height", 1000);
 
   createOverlays(svg);
@@ -235,7 +235,7 @@ const season08 = () => {
 const season07 = () => {
   let svg = d3.select(".chart07")
     .append("svg")
-    .attr("width", 60)
+    .attr("width", 50)
     .attr("height", 1000);
 
   createOverlays(svg);
@@ -249,8 +249,9 @@ const season07 = () => {
 const season06 = () => {
   let svg = d3.select(".chart06")
     .append("svg")
-    .attr("width", 60)
-    .attr("height", 1000);
+    .attr("width", 50)
+    .attr("height", 1000)
+    .attr("x", 200);
 
   createOverlays(svg);
 
