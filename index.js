@@ -25,23 +25,27 @@ const createElements = (svg, elem) => {
         .attr("height", 40)
         .attr("x", 0)
         .attr("y", (i * 50) + 100)
-        .attr("fill", "#C09699")
+        .attr("fill", color(d.TOI))
         .transition()
-          .attr("width", 200)
-          .attr("height", 200)
+          .attr("width", 300)
+          .attr("height", 50);
 
-      // overlay.append("text")
-      //   .attr("x", 100)
-      //   .attr("y", 50)
-      //   .attr("fill", textColor(d.TOI))
-      //   .text(function (d) {
-      //     // return d.G;
-      //   });
+      svg.select("g.overlays")
+        .append("text")
+        .attr("x", 36)
+        .attr("y", (i * 50) + 128)
+        .attr("fill", textColor(d.TOI))
+        .text(function () {
+          return "Age: " + d.Age + " Pos: " + d.Pos + " GP: " + d.GP + " G: " + d.G + " A: " + d.A + " Pts: " + d.PTS;
+        });
 
 
     })
     .on("mouseout", function (d) {
       svg.select("g.overlays rect")
+        .remove();
+      
+      svg.select("g.overlays text")
         .remove();
     })
     .transition()

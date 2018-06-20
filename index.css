@@ -40,7 +40,7 @@ rect {
 }
 
 rect:hover {
-  overflow: visible;
+  /* overflow: visible; */
 }
 
 .overlays {
