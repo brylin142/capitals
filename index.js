@@ -1,67 +1,75 @@
+const createElements = (svg, elem) => {
+  
+  let elemEnter = elem.enter()
+    .append("g")
+
+  let color = d3.scale.linear()
+    .domain([0, 3500])
+    .range(["#EEEEEE", "#992932"])
+
+
+  let textColor = d3.scale.ordinal()
+    .domain([0, 3500])
+    .range(["black", "#EEEEEE"])
+
+  let rect = elemEnter.append("rect")
+    .attr("width", 40)
+    .attr("height", 40)
+    .attr("y", (d, i) => (i * 50) + 100)
+    .attr("fill", d => color(d.TOI))
+    .attr("text-align", "center")
+    .on("mouseover", function (d) {
+      console.log(d)
+      svg.select("g.overlays")
+        .append("rect")
+        .attr("width", 300)
+        .attr("height", 300)
+        .attr("fill", color(d.TOI))
+    })
+    .on("mouseout", function (d) {
+      svg.select("g.overlays rect")
+        .remove()
+    });
+
+  elemEnter.append("text")
+    .attr("x", 6)
+    .attr("y", (d, i) => (i * 50) + 125)
+    .attr("fill", d => textColor(d.TOI))
+    .attr("font-weight", 200)
+    .text(function (d) {
+      return d.TOI;
+    })
+}
+
+const createOverlays = svg => {
+  svg.append("g")
+    .classed("boxes", true)
+
+  svg.append("g")
+    .classed("overlays", true)
+}
+
 const season18 = () => {
   let svg = d3.select(".chart18")
     .append("svg")
     .attr("width", 200)
     .attr("height", 1300)
   
-  svg.append("g")
-    .classed("boxes", true)
-
-  svg.append("g")
-    .classed("overlays", true)
+  createOverlays(svg);
   
   d3.csv("17-18.csv", function (data18) {
     let elem = svg.select("g.boxes").selectAll("g rect").data(data18)
-    let elemEnter = elem.enter()
-      .append("g")
-
-    let color = d3.scale.linear()
-      .domain([0, 3500])
-      .range(["#EEEEEE", "#992932"])
-
-
-    let textColor = d3.scale.ordinal()
-      .domain([0, 3500])
-      .range(["black", "#EEEEEE"])
-
-    let rect = elemEnter.append("rect")
-      .attr("width", 40)
-      .attr("height", 40)
-      .attr("y", (d, i) => (i * 50) + 100)
-      // .attr("x", 140)
-      .attr("fill", d => color(d.TOI))
-      .attr("text-align", "center")
-      .on("mouseover", function (d) {
-        console.log(d)
-        svg.select("g.overlays")
-          .append("rect")
-            .attr("width", 300)
-            .attr("height", 300)
-            .attr("fill", color(d.TOI))
-      })
-      .on("mouseout", function (d) {
-        svg.select("g.overlays rect")
-          .remove()
-      });
-
-    elemEnter.append("text")
-      .attr("x", 6)
-      .attr("y", (d, i) => (i * 50) + 125)
-      .attr("fill", d => textColor(d.TOI))
-      .attr("font-weight", 200)
-      .text(function(d){
-        return d.TOI;
-      })
+    createElements(svg, elem);
     
-    elemEnter.append("text")
-      .attr("x", 60)
-      // .attr("x", 500)
-      .attr("y", (d, i) => (i * 50) + 125)
-      .attr("fill", "black")
-      .attr("font-weight", 200)
-      .text(function(d){
-        return d.Player;
-      })
+    // elemEnter.append("text")
+    //   .attr("x", 60)
+    //   // .attr("x", 500)
+    //   .attr("y", (d, i) => (i * 50) + 125)
+    //   .attr("fill", "black")
+    //   .attr("font-weight", 200)
+    //   .text(function(d){
+    //     return d.Player;
+    //   })
     
   });
 };
@@ -72,45 +80,11 @@ const season17 = () => {
     .attr("width", 60)
     .attr("height", 1000)
 
+  createOverlays(svg);
+
   d3.csv("16-17.csv", function (data17) {
     let elem = svg.selectAll("g rect").data(data17)
-    let elemEnter = elem.enter()
-      .append("g")
-
-    let color = d3.scale.linear()
-      .domain([0, 3500])
-      .range(["#EEEEEE", "#992932"])
-
-    let textColor = d3.scale.ordinal()
-      .domain([0, 3500])
-      .range(["black", "#EEEEEE"])
-
-    let rect = elemEnter.append("rect")
-      .attr("width", 40)
-      .attr("height", 40)
-      .attr("y", (d, i) => (i * 50) + 100)
-      // .attr("x", 200)
-      .attr("fill", d => color(d.TOI))
-      .on("mouseover", function (d) {
-        d3.select(this)
-          .attr("width", 100)
-          .attr("height", 100)
-      })
-      .on("mouseout", function (d) {
-        d3.select(this)
-          .attr("width", 40)
-          .attr("height", 40)
-      });
-
-    elemEnter.append("text")
-      .attr("x", 6)
-      // .attr("x", 200)  
-      .attr("y", (d, i) => (i * 50) + 125)
-      .attr("fill", d => textColor(d.TOI))
-      .attr("font-weight", 200)
-      .text(function (d) {
-        return d.TOI;
-      })
+    createElements(svg, elem);
   });
 };
 
@@ -120,35 +94,11 @@ const season16 = () => {
     .attr("width", 60)
     .attr("height", 1000)
 
+  createOverlays(svg);
+
   d3.csv("15-16.csv", function (data16) {
     let elem = svg.selectAll("g rect").data(data16)
-    let elemEnter = elem.enter()
-      .append("g")
-
-    let color = d3.scale.linear()
-      .domain([0, 3500])
-      .range(["#EEEEEE", "#992932"])
-
-    let textColor = d3.scale.ordinal()
-      .domain([0, 3500])
-      .range(["black", "#EEEEEE"])
-
-    let rect = elemEnter.append("rect")
-      .attr("width", 40)
-      .attr("height", 40)
-      .attr("y", (d, i) => (i * 50) + 100)
-      // .attr("x", 200)
-      .attr("fill", d => color(d.TOI))
-
-    elemEnter.append("text")
-      .attr("x", 6)
-      // .attr("x", 200)  
-      .attr("y", (d, i) => (i * 50) + 125)
-      .attr("fill", d => textColor(d.TOI))
-      .attr("font-weight", 200)
-      .text(function (d) {
-        return d.TOI;
-      })
+    createElements(svg, elem);
   });
 };
 
@@ -158,35 +108,11 @@ const season15 = () => {
     .attr("width", 60)
     .attr("height", 1000)
 
+  createOverlays(svg);
+
   d3.csv("14-15.csv", function (data15) {
     let elem = svg.selectAll("g rect").data(data15)
-    let elemEnter = elem.enter()
-      .append("g")
-
-    let color = d3.scale.linear()
-      .domain([0, 3500])
-      .range(["#EEEEEE", "#992932"])
-
-    let textColor = d3.scale.ordinal()
-      .domain([0, 3500])
-      .range(["black", "#EEEEEE"])
-
-    let rect = elemEnter.append("rect")
-      .attr("width", 40)
-      .attr("height", 40)
-      .attr("y", (d, i) => (i * 50) + 100)
-      // .attr("x", 200)
-      .attr("fill", d => color(d.TOI))
-
-    elemEnter.append("text")
-      .attr("x", 6)
-      // .attr("x", 200)  
-      .attr("y", (d, i) => (i * 50) + 125)
-      .attr("fill", d => textColor(d.TOI))
-      .attr("font-weight", 200)
-      .text(function (d) {
-        return d.TOI;
-      })
+    createElements(svg, elem);
   });
 };
 
@@ -196,35 +122,11 @@ const season14 = () => {
     .attr("width", 60)
     .attr("height", 1000)
 
+  createOverlays(svg);
+
   d3.csv("13-14.csv", function (data14) {
     let elem = svg.selectAll("g rect").data(data14)
-    let elemEnter = elem.enter()
-      .append("g")
-
-    let color = d3.scale.linear()
-      .domain([0, 3500])
-      .range(["#EEEEEE", "#992932"])
-
-    let textColor = d3.scale.ordinal()
-      .domain([0, 3500])
-      .range(["black", "#EEEEEE"])
-
-    let rect = elemEnter.append("rect")
-      .attr("width", 40)
-      .attr("height", 40)
-      .attr("y", (d, i) => (i * 50) + 100)
-      // .attr("x", 200)
-      .attr("fill", d => color(d.TOI))
-
-    elemEnter.append("text")
-      .attr("x", 6)
-      // .attr("x", 200)  
-      .attr("y", (d, i) => (i * 50) + 125)
-      .attr("fill", d => textColor(d.TOI))
-      .attr("font-weight", 200)
-      .text(function (d) {
-        return d.TOI;
-      })
+    createElements(svg, elem);
   });
 };
 
@@ -234,35 +136,11 @@ const season13 = () => {
     .attr("width", 60)
     .attr("height", 1000)
 
+  createOverlays(svg);
+
   d3.csv("12-13.csv", function (data13) {
     let elem = svg.selectAll("g rect").data(data13)
-    let elemEnter = elem.enter()
-      .append("g")
-
-    let color = d3.scale.linear()
-      .domain([0, 3500])
-      .range(["#EEEEEE", "#992932"])
-
-    let textColor = d3.scale.ordinal()
-      .domain([0, 3500])
-      .range(["black", "#EEEEEE"])
-
-    let rect = elemEnter.append("rect")
-      .attr("width", 40)
-      .attr("height", 40)
-      .attr("y", (d, i) => (i * 50) + 100)
-      // .attr("x", 200)
-      .attr("fill", d => color(d.TOI))
-
-    elemEnter.append("text")
-      .attr("x", 6)
-      // .attr("x", 200)  
-      .attr("y", (d, i) => (i * 50) + 125)
-      .attr("fill", d => textColor(d.TOI))
-      .attr("font-weight", 200)
-      .text(function (d) {
-        return d.TOI;
-      })
+    createElements(svg, elem);
   });
 };
 
@@ -272,35 +150,11 @@ const season12 = () => {
     .attr("width", 60)
     .attr("height", 1000)
 
+  createOverlays(svg);
+
   d3.csv("11-12.csv", function (data12) {
     let elem = svg.selectAll("g rect").data(data12)
-    let elemEnter = elem.enter()
-      .append("g")
-
-    let color = d3.scale.linear()
-      .domain([0, 3500])
-      .range(["#EEEEEE", "#992932"])
-
-    let textColor = d3.scale.ordinal()
-      .domain([0, 3500])
-      .range(["black", "#EEEEEE"])
-
-    let rect = elemEnter.append("rect")
-      .attr("width", 40)
-      .attr("height", 40)
-      .attr("y", (d, i) => (i * 50) + 100)
-      // .attr("x", 200)
-      .attr("fill", d => color(d.TOI))
-
-    elemEnter.append("text")
-      .attr("x", 6)
-      // .attr("x", 200)  
-      .attr("y", (d, i) => (i * 50) + 125)
-      .attr("fill", d => textColor(d.TOI))
-      .attr("font-weight", 200)
-      .text(function (d) {
-        return d.TOI;
-      })
+    createElements(svg, elem);
   });
 };
 
@@ -310,35 +164,11 @@ const season11 = () => {
     .attr("width", 60)
     .attr("height", 1000)
 
+  createOverlays(svg);
+
   d3.csv("10-11.csv", function (data11) {
     let elem = svg.selectAll("g rect").data(data11)
-    let elemEnter = elem.enter()
-      .append("g")
-
-    let color = d3.scale.linear()
-      .domain([0, 3500])
-      .range(["#EEEEEE", "#992932"])
-
-    let textColor = d3.scale.ordinal()
-      .domain([0, 3500])
-      .range(["black", "#EEEEEE"])
-
-    let rect = elemEnter.append("rect")
-      .attr("width", 40)
-      .attr("height", 40)
-      .attr("y", (d, i) => (i * 50) + 100)
-      // .attr("x", 200)
-      .attr("fill", d => color(d.TOI))
-
-    elemEnter.append("text")
-      .attr("x", 6)
-      // .attr("x", 200)  
-      .attr("y", (d, i) => (i * 50) + 125)
-      .attr("fill", d => textColor(d.TOI))
-      .attr("font-weight", 200)
-      .text(function (d) {
-        return d.TOI;
-      })
+    createElements(svg, elem);
   });
 };
 
@@ -348,35 +178,11 @@ const season10 = () => {
     .attr("width", 60)
     .attr("height", 1000)
 
+  createOverlays(svg);
+
   d3.csv("09-10.csv", function (data10) {
     let elem = svg.selectAll("g rect").data(data10)
-    let elemEnter = elem.enter()
-      .append("g")
-
-    let color = d3.scale.linear()
-      .domain([0, 3500])
-      .range(["#EEEEEE", "#992932"])
-
-    let textColor = d3.scale.ordinal()
-      .domain([0, 3500])
-      .range(["black", "#EEEEEE"])
-
-    let rect = elemEnter.append("rect")
-      .attr("width", 40)
-      .attr("height", 40)
-      .attr("y", (d, i) => (i * 50) + 100)
-      // .attr("x", 200)
-      .attr("fill", d => color(d.TOI))
-
-    elemEnter.append("text")
-      .attr("x", 6)
-      // .attr("x", 200)  
-      .attr("y", (d, i) => (i * 50) + 125)
-      .attr("fill", d => textColor(d.TOI))
-      .attr("font-weight", 200)
-      .text(function (d) {
-        return d.TOI;
-      })
+    createElements(svg, elem);
   });
 };
 
@@ -386,35 +192,11 @@ const season09 = () => {
     .attr("width", 60)
     .attr("height", 1000)
 
+  createOverlays(svg);
+
   d3.csv("08-09.csv", function (data09) {
     let elem = svg.selectAll("g rect").data(data09)
-    let elemEnter = elem.enter()
-      .append("g")
-
-    let color = d3.scale.linear()
-      .domain([0, 3500])
-      .range(["#EEEEEE", "#992932"])
-
-    let textColor = d3.scale.ordinal()
-      .domain([0, 3500])
-      .range(["black", "#EEEEEE"])
-
-    let rect = elemEnter.append("rect")
-      .attr("width", 40)
-      .attr("height", 40)
-      .attr("y", (d, i) => (i * 50) + 100)
-      // .attr("x", 200)
-      .attr("fill", d => color(d.TOI))
-
-    elemEnter.append("text")
-      .attr("x", 6)
-      // .attr("x", 200)  
-      .attr("y", (d, i) => (i * 50) + 125)
-      .attr("fill", d => textColor(d.TOI))
-      .attr("font-weight", 200)
-      .text(function (d) {
-        return d.TOI;
-      })
+    createElements(svg, elem);
   });
 };
 
@@ -424,35 +206,11 @@ const season08 = () => {
     .attr("width", 60)
     .attr("height", 1000)
 
+  createOverlays(svg);
+
   d3.csv("07-08.csv", function (data08) {
     let elem = svg.selectAll("g rect").data(data08)
-    let elemEnter = elem.enter()
-      .append("g")
-
-    let color = d3.scale.linear()
-      .domain([0, 3500])
-      .range(["#EEEEEE", "#992932"])
-
-    let textColor = d3.scale.ordinal()
-      .domain([0, 3500])
-      .range(["black", "#EEEEEE"])
-
-    let rect = elemEnter.append("rect")
-      .attr("width", 40)
-      .attr("height", 40)
-      .attr("y", (d, i) => (i * 50) + 100)
-      // .attr("x", 200)
-      .attr("fill", d => color(d.TOI))
-
-    elemEnter.append("text")
-      .attr("x", 6)
-      // .attr("x", 200)  
-      .attr("y", (d, i) => (i * 50) + 125)
-      .attr("fill", d => textColor(d.TOI))
-      .attr("font-weight", 200)
-      .text(function (d) {
-        return d.TOI;
-      })
+    createElements(svg, elem);
   });
 };
 
@@ -462,35 +220,11 @@ const season07 = () => {
     .attr("width", 60)
     .attr("height", 1000)
 
+  createOverlays(svg);
+
   d3.csv("06-07.csv", function (data07) {
     let elem = svg.selectAll("g rect").data(data07)
-    let elemEnter = elem.enter()
-      .append("g")
-
-    let color = d3.scale.linear()
-      .domain([0, 3500])
-      .range(["#EEEEEE", "#992932"])
-
-    let textColor = d3.scale.ordinal()
-      .domain([0, 3500])
-      .range(["black", "#EEEEEE"])
-
-    let rect = elemEnter.append("rect")
-      .attr("width", 40)
-      .attr("height", 40)
-      .attr("y", (d, i) => (i * 50) + 100)
-      // .attr("x", 200)
-      .attr("fill", d => color(d.TOI))
-
-    elemEnter.append("text")
-      .attr("x", 6)
-      // .attr("x", 200)  
-      .attr("y", (d, i) => (i * 50) + 125)
-      .attr("fill", d => textColor(d.TOI))
-      .attr("font-weight", 200)
-      .text(function (d) {
-        return d.TOI;
-      })
+    createElements(svg, elem);
   });
 };
 
@@ -500,35 +234,11 @@ const season06 = () => {
     .attr("width", 60)
     .attr("height", 1000)
 
+  createOverlays(svg);
+
   d3.csv("05-06.csv", function (data06) {
     let elem = svg.selectAll("g rect").data(data06)
-    let elemEnter = elem.enter()
-      .append("g")
-
-    let color = d3.scale.linear()
-      .domain([0, 3500])
-      .range(["#EEEEEE", "#992932"])
-
-    let textColor = d3.scale.ordinal()
-      .domain([0, 3500])
-      .range(["black", "#EEEEEE"])
-
-    let rect = elemEnter.append("rect")
-      .attr("width", 40)
-      .attr("height", 40)
-      .attr("y", (d, i) => (i * 50) + 100)
-      // .attr("x", 200)
-      .attr("fill", d => color(d.TOI))
-
-    elemEnter.append("text")
-      .attr("x", 6)
-      // .attr("x", 200)  
-      .attr("y", (d, i) => (i * 50) + 125)
-      .attr("fill", d => textColor(d.TOI))
-      .attr("font-weight", 200)
-      .text(function (d) {
-        return d.TOI;
-      })
+    createElements(svg, elem);
   });
 };
 
