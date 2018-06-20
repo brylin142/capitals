@@ -20,6 +20,10 @@ td {
   width: 56px;
 }
 
+svg {
+  overflow: visible;
+}
+
 .chart18 {
   align-items: right;
 }
@@ -37,4 +41,8 @@ rect {
 
 rect:hover {
   overflow: visible;
+}
+
+.overlays {
+  pointer-events: none;
 }
