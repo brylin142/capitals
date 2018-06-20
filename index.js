@@ -15,39 +15,41 @@ const createElements = (svg, elem) => {
     .attr("width", 40)
     .attr("height", 40)
     .attr("fill", d => color(d.TOI))
-    .attr("x", 150)
+    // .attr("x", 150)
     .attr("y", -100)
+    .on("mouseenter", function (d, i) {
+      console.log(d)
+      let overlay = svg.select("g.overlays")
+        .append("rect")
+        .attr("width", 40)
+        .attr("height", 40)
+        .attr("x", 0)
+        .attr("y", (i * 50) + 100)
+        .attr("fill", "#C09699")
+        .transition()
+          .attr("width", 200)
+          .attr("height", 200)
+
+      // overlay.append("text")
+      //   .attr("x", 100)
+      //   .attr("y", 50)
+      //   .attr("fill", textColor(d.TOI))
+      //   .text(function (d) {
+      //     // return d.G;
+      //   });
+
+
+    })
+    .on("mouseout", function (d) {
+      svg.select("g.overlays rect")
+        .remove();
+    })
     .transition()
-      .duration(1000)
+      .duration(1500)
       .attr("y", (d, i) => (i * 50) + 100);
 
-    // .on("mouseover", function (d) {
-    //   console.log(d)
-    //   let overlay = svg.select("g.overlays")
-    //     .append("rect")
-    //     .attr("width", 300)
-    //     .attr("height", 300)
-    //     .attr("x", -150)
-    //     .attr("y", (d, i) => (i * 50) + 100)
-    //     .attr("fill", color(d.TOI));
-
-    //   overlay.append("text")
-    //     .attr("x", 100)
-    //     .attr("y", 50)
-    //     .attr("fill", textColor(d.TOI))
-    //     .text(function (d) {
-    //       return d.G;
-    //     });
-
-
-    // })
-    // .on("mouseout", function (d) {
-    //   svg.select("g.overlays rect")
-    //     .remove();
-    // });
-
   elemEnter.append("text")
-    .attr("x", 156)
+    .attr("x", 6)
     .attr("y", -100)
     .attr("fill", d => textColor(d.TOI))
     .attr("font-weight", 200)
@@ -55,7 +57,7 @@ const createElements = (svg, elem) => {
       return d.TOI;
     })
     .transition()
-      .duration(1000)
+      .duration(1500)
       .attr("y", (d, i) => (i * 50) + 125);
 };
 
@@ -72,23 +74,23 @@ const season18 = () => {
     .append("svg")
     .attr("width", 200)
     .attr("height", 1400);
-  
+
   createOverlays(svg);
-  
+
   d3.csv("17-18.csv", function (data18) {
     let elem = svg.select("g.boxes").selectAll("g rect").data(data18);
     createElements(svg, elem);
-    
+
     elem.enter()
       .append("text")
       .attr("x", 210)
       .attr("y", (d, i) => (i * 50) + 125)
       .attr("fill", "black")
-      .attr("font-weight", 200)
-      .text(function(d){
+      .attr("font-weight", 400)
+      .text(function (d) {
         return d.Player;
       });
-    
+
   });
 };
 
