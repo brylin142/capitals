@@ -1,7 +1,7 @@
 const season18 = () => {
   let svg = d3.select(".chart18")
     .append("svg")
-    .attr("width", 60)
+    .attr("width", 200)
     .attr("height", 1300)
   
   d3.csv("17-18.csv", function (data18) {
@@ -14,21 +14,45 @@ const season18 = () => {
       .domain([0, 3500])
       .range(["white", "#992932"])
 
+    let textColor = d3.scale.linear()
+      .domain([0, 3500])
+      .range(["black", "white"])
+
     let rect = elemEnter.append("rect")
       .attr("width", 40)
       .attr("height", 40)
-      .attr("y", (d, i) => (i * 50))
-      // .attr("x", 500)
+      .attr("y", (d, i) => (i * 50) + 100)
+      // .attr("x", 140)
       .attr("fill", d => color(d.TOI))
       .attr("text-align", "center")
+      .on("mouseover", function (d) {
+        d3.select(this)
+          .attr("width", 100)
+          .attr("height", 100)
+          .attr("overflow", "visible")
+      })
+      .on("mouseout", function (d) {
+        d3.select(this)
+          .attr("width", 40)
+          .attr("height", 40)
+      });
 
     elemEnter.append("text")
-      // .attr("x", 500)
-      .attr("y", (d, i) => (i * 50) + 25)
-      .attr("fill", "black")
+      .attr("y", (d, i) => (i * 50) + 125)
+      .attr("fill", d => textColor(d.TOI))
       .attr("font-weight", 200)
       .text(function(d){
         return d.TOI;
+      })
+    
+    elemEnter.append("text")
+      .attr("x", 60)
+      // .attr("x", 500)
+      .attr("y", (d, i) => (i * 50) + 125)
+      .attr("fill", "black")
+      .attr("font-weight", 200)
+      .text(function(d){
+        return d.Player;
       })
     
   });
@@ -53,13 +77,23 @@ const season17 = () => {
     let rect = elemEnter.append("rect")
       .attr("width", 40)
       .attr("height", 40)
-      .attr("y", (d, i) => i * 50)
+      .attr("y", (d, i) => (i * 50) + 100)
       // .attr("x", 200)
       .attr("fill", d => color(d.TOI))
+      .on("mouseover", function (d) {
+        d3.select(this)
+          .attr("width", 100)
+          .attr("height", 100)
+      })
+      .on("mouseout", function (d) {
+        d3.select(this)
+          .attr("width", 40)
+          .attr("height", 40)
+      });
 
     elemEnter.append("text")
       // .attr("x", 200)  
-      .attr("y", (d, i) => (i * 50) + 25)
+      .attr("y", (d, i) => (i * 50) + 125)
       .attr("fill", "black")
       .attr("font-weight", 200)
       .text(function (d) {
@@ -87,13 +121,13 @@ const season16 = () => {
     let rect = elemEnter.append("rect")
       .attr("width", 40)
       .attr("height", 40)
-      .attr("y", (d, i) => i * 50)
+      .attr("y", (d, i) => (i * 50) + 100)
       // .attr("x", 200)
       .attr("fill", d => color(d.TOI))
 
     elemEnter.append("text")
       // .attr("x", 200)  
-      .attr("y", (d, i) => (i * 50) + 25)
+      .attr("y", (d, i) => (i * 50) + 125)
       .attr("fill", "black")
       .attr("font-weight", 200)
       .text(function (d) {
@@ -121,13 +155,13 @@ const season15 = () => {
     let rect = elemEnter.append("rect")
       .attr("width", 40)
       .attr("height", 40)
-      .attr("y", (d, i) => i * 50)
+      .attr("y", (d, i) => (i * 50) + 100)
       // .attr("x", 200)
       .attr("fill", d => color(d.TOI))
 
     elemEnter.append("text")
       // .attr("x", 200)  
-      .attr("y", (d, i) => (i * 50) + 25)
+      .attr("y", (d, i) => (i * 50) + 125)
       .attr("fill", "black")
       .attr("font-weight", 200)
       .text(function (d) {
@@ -155,13 +189,13 @@ const season14 = () => {
     let rect = elemEnter.append("rect")
       .attr("width", 40)
       .attr("height", 40)
-      .attr("y", (d, i) => i * 50)
+      .attr("y", (d, i) => (i * 50) + 100)
       // .attr("x", 200)
       .attr("fill", d => color(d.TOI))
 
     elemEnter.append("text")
       // .attr("x", 200)  
-      .attr("y", (d, i) => (i * 50) + 25)
+      .attr("y", (d, i) => (i * 50) + 125)
       .attr("fill", "black")
       .attr("font-weight", 200)
       .text(function (d) {
@@ -189,13 +223,13 @@ const season13 = () => {
     let rect = elemEnter.append("rect")
       .attr("width", 40)
       .attr("height", 40)
-      .attr("y", (d, i) => i * 50)
+      .attr("y", (d, i) => (i * 50) + 100)
       // .attr("x", 200)
       .attr("fill", d => color(d.TOI))
 
     elemEnter.append("text")
       // .attr("x", 200)  
-      .attr("y", (d, i) => (i * 50) + 25)
+      .attr("y", (d, i) => (i * 50) + 125)
       .attr("fill", "black")
       .attr("font-weight", 200)
       .text(function (d) {
@@ -223,13 +257,13 @@ const season12 = () => {
     let rect = elemEnter.append("rect")
       .attr("width", 40)
       .attr("height", 40)
-      .attr("y", (d, i) => i * 50)
+      .attr("y", (d, i) => (i * 50) + 100)
       // .attr("x", 200)
       .attr("fill", d => color(d.TOI))
 
     elemEnter.append("text")
       // .attr("x", 200)  
-      .attr("y", (d, i) => (i * 50) + 25)
+      .attr("y", (d, i) => (i * 50) + 125)
       .attr("fill", "black")
       .attr("font-weight", 200)
       .text(function (d) {
@@ -257,13 +291,13 @@ const season11 = () => {
     let rect = elemEnter.append("rect")
       .attr("width", 40)
       .attr("height", 40)
-      .attr("y", (d, i) => i * 50)
+      .attr("y", (d, i) => (i * 50) + 100)
       // .attr("x", 200)
       .attr("fill", d => color(d.TOI))
 
     elemEnter.append("text")
       // .attr("x", 200)  
-      .attr("y", (d, i) => (i * 50) + 25)
+      .attr("y", (d, i) => (i * 50) + 125)
       .attr("fill", "black")
       .attr("font-weight", 200)
       .text(function (d) {
@@ -291,13 +325,13 @@ const season10 = () => {
     let rect = elemEnter.append("rect")
       .attr("width", 40)
       .attr("height", 40)
-      .attr("y", (d, i) => i * 50)
+      .attr("y", (d, i) => (i * 50) + 100)
       // .attr("x", 200)
       .attr("fill", d => color(d.TOI))
 
     elemEnter.append("text")
       // .attr("x", 200)  
-      .attr("y", (d, i) => (i * 50) + 25)
+      .attr("y", (d, i) => (i * 50) + 125)
       .attr("fill", "black")
       .attr("font-weight", 200)
       .text(function (d) {
@@ -325,13 +359,13 @@ const season09 = () => {
     let rect = elemEnter.append("rect")
       .attr("width", 40)
       .attr("height", 40)
-      .attr("y", (d, i) => i * 50)
+      .attr("y", (d, i) => (i * 50) + 100)
       // .attr("x", 200)
       .attr("fill", d => color(d.TOI))
 
     elemEnter.append("text")
       // .attr("x", 200)  
-      .attr("y", (d, i) => (i * 50) + 25)
+      .attr("y", (d, i) => (i * 50) + 125)
       .attr("fill", "black")
       .attr("font-weight", 200)
       .text(function (d) {
@@ -359,13 +393,13 @@ const season08 = () => {
     let rect = elemEnter.append("rect")
       .attr("width", 40)
       .attr("height", 40)
-      .attr("y", (d, i) => i * 50)
+      .attr("y", (d, i) => (i * 50) + 100)
       // .attr("x", 200)
       .attr("fill", d => color(d.TOI))
 
     elemEnter.append("text")
       // .attr("x", 200)  
-      .attr("y", (d, i) => (i * 50) + 25)
+      .attr("y", (d, i) => (i * 50) + 125)
       .attr("fill", "black")
       .attr("font-weight", 200)
       .text(function (d) {
@@ -393,13 +427,13 @@ const season07 = () => {
     let rect = elemEnter.append("rect")
       .attr("width", 40)
       .attr("height", 40)
-      .attr("y", (d, i) => i * 50)
+      .attr("y", (d, i) => (i * 50) + 100)
       // .attr("x", 200)
       .attr("fill", d => color(d.TOI))
 
     elemEnter.append("text")
       // .attr("x", 200)  
-      .attr("y", (d, i) => (i * 50) + 25)
+      .attr("y", (d, i) => (i * 50) + 125)
       .attr("fill", "black")
       .attr("font-weight", 200)
       .text(function (d) {
@@ -427,13 +461,13 @@ const season06 = () => {
     let rect = elemEnter.append("rect")
       .attr("width", 40)
       .attr("height", 40)
-      .attr("y", (d, i) => i * 50)
+      .attr("y", (d, i) => (i * 50) + 100)
       // .attr("x", 200)
       .attr("fill", d => color(d.TOI))
 
     elemEnter.append("text")
       // .attr("x", 200)  
-      .attr("y", (d, i) => (i * 50) + 25)
+      .attr("y", (d, i) => (i * 50) + 125)
       .attr("fill", "black")
       .attr("font-weight", 200)
       .text(function (d) {
@@ -445,18 +479,18 @@ const season06 = () => {
 
 document.addEventListener("DOMContentLoaded", () => {
   console.log("hello")
-  season18();
-  season17();
-  season16();
-  season15();
-  season14();
-  season13();
-  season12();
-  season11();
-  season10();
-  season09();
-  season08();
-  season07();
   season06();
+  season07();
+  season08();
+  season09();
+  season10();
+  season11();
+  season12();
+  season13();
+  season14();
+  season15();
+  season16();
+  season17();
+  season18();
   console.log("after")
 });
