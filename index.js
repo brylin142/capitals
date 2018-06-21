@@ -3,6 +3,7 @@ const createElements = (svg, elem) => {
     .append("g")
     .on("mouseover", function (d, i) {
       let overlay = svg.select("g.overlays")
+      // console.log(d)
         .append("foreignObject")
         .attr("width", 40)
         .attr("height", 40)
@@ -13,10 +14,12 @@ const createElements = (svg, elem) => {
       let border = overlay.append("rect")
         .attr("width", 200)
         .attr("height", 200)
+        .attr("stroke", "black")
+        .attr("stroke-width", 2)
         .attr("x", 0)
         .attr("y", (i * 50) + 100);
-
-
+        
+        
       overlay.transition()
         .attr("x", -160)
         .attr("width", 200)
@@ -27,8 +30,6 @@ const createElements = (svg, elem) => {
         .style({
           background: color(d.TOI),
           color: textColor(d.TOI),
-          border: 1,
-          bordercolor: "gray",
           opacity: .9
         })
         .append("div")
@@ -64,7 +65,6 @@ const createElements = (svg, elem) => {
     .attr("width", 40)
     .attr("height", 40)
     .attr("fill", d => color(d.TOI))
-    // .attr("x", 150)
     .attr("y", -100)
     .transition()
     .duration(1500)

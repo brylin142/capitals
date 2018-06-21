@@ -22,6 +22,20 @@ h3 {
   margin-bottom: 5px;
 }
 
+.logo {
+  position: absolute;
+  height: 100px;
+  width: 180px;
+  top: 8px;
+  left: 650px;
+  /* display: none; */
+}
+
+.finals-logo {
+  position: absolute;
+  display: none;
+}
+
 .years {
   position: absolute;
   display: flex;
