@@ -27,13 +27,17 @@ h3 {
   height: 100px;
   width: 180px;
   top: 8px;
-  left: 650px;
+  left: 640px;
   /* display: none; */
 }
 
 .finals-logo {
   position: absolute;
-  display: none;
+  height: 100px;
+  width: 80px;
+  top: 8px;
+  left: 840px;
+  /* display: none; */
 }
 
 .years {
