@@ -10,38 +10,40 @@ const createElements = (svg, elem) => {
         .attr("x", 0)
         .attr("y", (i * 50) + 150)
         .attr("class", "popout");
+      
         
-      let border = overlay.append("rect")
-        .attr("width", 200)
-        .attr("height", 200)
-        .attr("stroke", "black")
-        .attr("stroke-width", 2)
-        .attr("x", 0)
-        .attr("y", (i * 50) + 100);
-        
-        
+      // take a look
+      // let border = div.append("rect")
+      //   .attr("width", 200)
+      //   .attr("height", 200)
+      //   .attr("stroke", "black")
+      //   .attr("stroke-width", 2)
+      //   .attr("x", 0)
+      //   .attr("y", (i * 50) + 100);
+      
+      
       overlay.transition()
-        .attr("x", -160)
-        .attr("width", 200)
-        .attr("height", 200);
-
+      .attr("x", -160)
+      .attr("width", 200)
+      .attr("height", 200);
+      
       let div = overlay.append("xhtml:div")
-        .attr("class", "stats")
-        .style({
-          background: color(d.TOI),
-          color: textColor(d.TOI),
-          opacity: .9
-        })
-        .append("div")
-        .html(
-          `<h5 class="name">${d.Player} - ${d.Pos}</h5>
-          <p class="age">Age: ${d.Age}</p>
-          <p>GP: ${d.GP}</p>
-          <p>G: ${d.G}</p>
-          <p>A: ${d.A}</p>
-          <p>Pts: ${d.PTS}</p>
-          <h5 class="separator"></h5>`
-        );
+      .attr("class", "stats")
+      .style({
+        background: color(d.TOI),
+        color: textColor(d.TOI),
+        opacity: .9
+      })
+      .append("div")
+      .html(
+        `<h5 class="name">${d.Player} - ${d.Pos}</h5>
+        <p class="age">Age: ${d.Age}</p>
+        <p>Games Played: ${d.GP}</p>
+        <p>Goals: ${d.G}</p>
+        <p>Assists: ${d.A}</p>
+        <p>Points: ${d.PTS}</p>
+        <h5 class="separator"></h5>`
+      );
 
     })
     .on("mouseout", function (d) {
@@ -95,7 +97,7 @@ const season18 = () => {
   let svg = d3.select(".chart18")
     .append("svg")
     .attr("width", 200)
-    .attr("height", 1500);
+    .attr("height", 1600);
 
   createOverlays(svg);
 
@@ -108,7 +110,7 @@ const season18 = () => {
       .attr("x", 60)
       .attr("y", (d, i) => (i * 50) + 175)
       .attr("fill", "black")
-      .attr("font-weight", 400)
+      .attr("font-weight", 600)
       .text(function (d) {
         return d.Player;
       });
