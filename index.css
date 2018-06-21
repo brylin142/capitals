@@ -1,24 +1,35 @@
 body {
   display: flex;
   /* justify-content: space-between; */
-  margin: 0 150px;
+  margin: 0 180px;
 }
 
-h1 {
+h3 {
+  font-family: sans-serif;
   position: absolute;
-  right: 200px;
+  width: 400px;
+}
+
+.description {
+  position: absolute;
+  font-family: sans-serif;
+  width: 500px;
+  top: 40px;
+}
+
+.description p {
+  margin-top: 10px;
+  margin-bottom: 5px;
 }
 
 .years {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
   font-family: sans-serif;
   font-size: 12px;
-  /* position: absolute;
-  left: 157px;
-  top: 75px; */
-}
-
-.years td {
-  /* width: 46px; */
+  width: 635px;
+  top: 100px;
 }
 
 svg {
@@ -32,21 +43,15 @@ svg {
 text {
   font-size: 12px;
   font-family: sans-serif;
-  color: white;
   pointer-events: none;
-}
-
-rect {
-  border: 1px solid black;
-  text-align: center;
-}
-
-rect:hover {
-  /* overflow: visible;  */
 }
 
 .overlays {
   pointer-events: none;
+}
+
+.name {
+  margin-bottom: 8px;
 }
 
 .stats {
@@ -60,23 +65,20 @@ rect:hover {
 
 .popout {
   font-family: sans-serif;
-  /* background: #B9878B; */
   text-align: center;
   align-content: center;
-  border: 1px sold gray;
-}
-
-.popout p {
-  font-size: 13px;
-  margin-bottom: 3px;
-}
-
-.name {
-  margin-bottom: 0px;
-  margin-top: 0px;
+  padding-bottom: 10px;
 }
 
 .age {
   font-size: 13px;
   margin-top: 5px;
+  margin-bottom: 10px;
 }
+
+.popout p {
+  font-size: 12px;
+  margin-bottom: 3px;
+  margin-top: 3px;
+}
+
