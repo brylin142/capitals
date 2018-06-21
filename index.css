@@ -1,6 +1,7 @@
 body {
   display: flex;
   /* justify-content: space-between; */
+  margin: 0 150px;
 }
 
 h1 {
@@ -8,16 +9,16 @@ h1 {
   right: 200px;
 }
 
-table {
+.years {
   font-family: sans-serif;
   font-size: 12px;
-  position: absolute;
+  /* position: absolute;
   left: 157px;
-  top: 75px;
+  top: 75px; */
 }
 
-td {
-  width: 46px;
+.years td {
+  /* width: 46px; */
 }
 
 svg {
@@ -32,6 +33,7 @@ text {
   font-size: 12px;
   font-family: sans-serif;
   color: white;
+  pointer-events: none;
 }
 
 rect {
@@ -40,9 +42,41 @@ rect {
 }
 
 rect:hover {
-  /* overflow: visible; */
+  /* overflow: visible;  */
 }
 
 .overlays {
   pointer-events: none;
+}
+
+.stats {
+  overflow: hidden;
+}
+
+.stats div {
+  width: 200px;
+  z-index: 10;
+}
+
+.popout {
+  font-family: sans-serif;
+  /* background: #B9878B; */
+  text-align: center;
+  align-content: center;
+  border: 1px sold gray;
+}
+
+.popout p {
+  font-size: 13px;
+  margin-bottom: 3px;
+}
+
+.name {
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+
+.age {
+  font-size: 13px;
+  margin-top: 5px;
 }
