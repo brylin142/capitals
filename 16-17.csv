@@ -1,18 +1,18 @@
 Player,Age,Pos,GP,G,A,PTS,+/-,PIM,TOI,ATOI
-Alex Ovechkin,31,LW,82,33,36,69,6,50,1506,18:22
-Nicklas Backstrom,29,C,82,23,63,86,17,38,1497,18:16
-Jay Beagle,31,RW,81,13,17,30,20,22,1104,13:38
-John Carlson,27,D,72,9,28,37,7,10,1635,22:43
-Braden Holtby,27,G,63,0,0,0,0,0,3680,58:25
-Dmitry Orlov,25,D,82,6,27,33,30,51,1602,19:32
-Philipp Grubauer,25,G,24,0,0,0,0,0,1265,52:41
-Evgeny Kuznetsov,24,C,82,19,40,59,18,46,1390,16:57
-Tom Wilson,22,RW,82,7,12,19,9,133,1060,12:56
-Matt Niskanen,30,D,78,5,34,39,20,32,1730,22:11
-Brooks Orpik,36,D,79,0,14,14,32,48,1405,17:47
-Andre Burakovsky,21,LW,64,12,23,35,13,14,849,13:16
-T.J. Oshie,30,RW,68,33,23,56,28,36,1214,17:51
-Chandler Stephenson,22,C,4,0,0,0,0,0,36,8:53
-Lars Eller,27,C,81,12,13,25,15,36,1126,13:54
-Brett Connolly,24,RW,66,15,8,23,20,40,706,10:41
-Jakub Vrana,20,LW,21,3,3,6,2,2,233,11:07
+Alex Ovechkin,31,Left Wing,82,33,36,69,6,50,1506,18:22
+Nicklas Backstrom,29,Center,82,23,63,86,17,38,1497,18:16
+Jay Beagle,31,Right Wing,81,13,17,30,20,22,1104,13:38
+John Carlson,27,Defense,72,9,28,37,7,10,1635,22:43
+Braden Holtby,27,Goalie,63,0,0,0,0,0,3680,58:25
+Dmitry Orlov,25,Defense,82,6,27,33,30,51,1602,19:32
+Philipp Grubauer,25,Goalie,24,0,0,0,0,0,1265,52:41
+Evgeny Kuznetsov,24,Center,82,19,40,59,18,46,1390,16:57
+Tom Wilson,22,Right Wing,82,7,12,19,9,133,1060,12:56
+Matt Niskanen,30,Defense,78,5,34,39,20,32,1730,22:11
+Brooks Orpik,36,Defense,79,0,14,14,32,48,1405,17:47
+Andre Burakovsky,21,Left Wing,64,12,23,35,13,14,849,13:16
+T.J. Oshie,30,Right Wing,68,33,23,56,28,36,1214,17:51
+Chandler Stephenson,22,Center,4,0,0,0,0,0,36,8:53
+Lars Eller,27,Center,81,12,13,25,15,36,1126,13:54
+Brett Connolly,24,Right Wing,66,15,8,23,20,40,706,10:41
+Jakub Vrana,20,Left Wing,21,3,3,6,2,2,233,11:07
