@@ -37,8 +37,8 @@ const createElements = (svg, elem) => {
       .append("div")
       .html(
         `<h5 class="name">${d.Player}</h5>
+        <p>Age: ${d.Age}</p>
         <p>Position: ${d.Pos}</p>
-        <p class="age">Age: ${d.Age}</p>
         <p>Games Played: ${d.GP}</p>
         <p>Goals: ${d.G}</p>
         <p>Assists: ${d.A}</p>
