@@ -282,7 +282,7 @@ const season06 = () => {
 
   createOverlays(svg);
 
-  d3.csv("05-06.csv", function (data06) {
+  d3.csv("./assets/05-06.csv", function (data06) {
     let elem = svg.select("g.boxes").selectAll("g rect").data(data06);
     createElements(svg, elem);
   });
