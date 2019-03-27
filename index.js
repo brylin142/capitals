@@ -102,7 +102,7 @@ const season18 = () => {
 
   createOverlays(svg);
 
-  d3.csv("17-18.csv", function (data18) {
+  d3.csv("./assets/csv/17-18.csv", function (data18) {
     let elem = svg.select("g.boxes").selectAll("g rect").data(data18);
     createElements(svg, elem);
 
@@ -127,7 +127,7 @@ const season17 = () => {
 
   createOverlays(svg);
 
-  d3.csv("16-17.csv", function (data17) {
+  d3.csv("./assets/csv/16-17.csv", function (data17) {
     let elem = svg.select("g.boxes").selectAll("g rect").data(data17);
     createElements(svg, elem);
   });
@@ -141,7 +141,7 @@ const season16 = () => {
 
   createOverlays(svg);
 
-  d3.csv("15-16.csv", function (data16) {
+  d3.csv("./assets/csv/15-16.csv", function (data16) {
     let elem = svg.select("g.boxes").selectAll("g rect").data(data16);
     createElements(svg, elem);
   });
@@ -155,7 +155,7 @@ const season15 = () => {
 
   createOverlays(svg);
 
-  d3.csv("14-15.csv", function (data15) {
+  d3.csv("./assets/csv/14-15.csv", function (data15) {
     let elem = svg.select("g.boxes").selectAll("g rect").data(data15);
     createElements(svg, elem);
   });
@@ -169,7 +169,7 @@ const season14 = () => {
 
   createOverlays(svg);
 
-  d3.csv("13-14.csv", function (data14) {
+  d3.csv("./assets/csv/13-14.csv", function (data14) {
     let elem = svg.select("g.boxes").selectAll("g rect").data(data14);
     createElements(svg, elem);
   });
@@ -183,7 +183,7 @@ const season13 = () => {
 
   createOverlays(svg);
 
-  d3.csv("12-13.csv", function (data13) {
+  d3.csv("./assets/csv/12-13.csv", function (data13) {
     let elem = svg.select("g.boxes").selectAll("g rect").data(data13);
     createElements(svg, elem);
   });
@@ -197,7 +197,7 @@ const season12 = () => {
 
   createOverlays(svg);
 
-  d3.csv("11-12.csv", function (data12) {
+  d3.csv("./assets/csv/11-12.csv", function (data12) {
     let elem = svg.select("g.boxes").selectAll("g rect").data(data12);
     createElements(svg, elem);
   });
@@ -211,7 +211,7 @@ const season11 = () => {
 
   createOverlays(svg);
 
-  d3.csv("10-11.csv", function (data11) {
+  d3.csv("./assets/csv/10-11.csv", function (data11) {
     let elem = svg.select("g.boxes").selectAll("g rect").data(data11);
     createElements(svg, elem);
   });
@@ -225,7 +225,7 @@ const season10 = () => {
 
   createOverlays(svg);
 
-  d3.csv("09-10.csv", function (data10) {
+  d3.csv("./assets/csv/09-10.csv", function (data10) {
     let elem = svg.select("g.boxes").selectAll("g rect").data(data10);
     createElements(svg, elem);
   });
@@ -239,7 +239,7 @@ const season09 = () => {
 
   createOverlays(svg);
 
-  d3.csv("08-09.csv", function (data09) {
+  d3.csv("./assets/csv/08-09.csv", function (data09) {
     let elem = svg.select("g.boxes").selectAll("g rect").data(data09);
     createElements(svg, elem);
   });
@@ -253,7 +253,7 @@ const season08 = () => {
 
   createOverlays(svg);
 
-  d3.csv("07-08.csv", function (data08) {
+  d3.csv("./assets/csv/07-08.csv", function (data08) {
     let elem = svg.select("g.boxes").selectAll("g rect").data(data08);
     createElements(svg, elem);
   });
@@ -267,7 +267,7 @@ const season07 = () => {
 
   createOverlays(svg);
 
-  d3.csv("06-07.csv", function (data07) {
+  d3.csv("./assets/csv/06-07.csv", function (data07) {
     let elem = svg.select("g.boxes").selectAll("g rect").data(data07);
     createElements(svg, elem);
   });
@@ -282,7 +282,7 @@ const season06 = () => {
 
   createOverlays(svg);
 
-  d3.csv("./assets/05-06.csv", function (data06) {
+  d3.csv("./assets/csv/05-06.csv", function (data06) {
     let elem = svg.select("g.boxes").selectAll("g rect").data(data06);
     createElements(svg, elem);
   });
