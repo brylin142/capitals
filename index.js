@@ -1,17 +1,16 @@
-const createElements = (svg, elem) => {
+const createElements = (svg, elem, stat) => {
   let elemEnter = elem.enter()
     .append("g")
     .on("mouseover", function (d, i) {
       let overlay = svg.select("g.overlays")
-      // console.log(d)
         .append("foreignObject")
         .attr("width", 40)
         .attr("height", 40)
-        .attr("x", 0)
-        .attr("y", (i * 50) + 150)
+        // .attr("x", 112)
+        .attr("y", (i * 50) + 180)
         .attr("class", "popout");
-      
-        
+      // debugger
+
       // take a look
       // let border = div.append("rect")
       //   .attr("width", 200)
@@ -20,31 +19,33 @@ const createElements = (svg, elem) => {
       //   .attr("stroke-width", 2)
       //   .attr("x", 0)
       //   .attr("y", (i * 50) + 100);
-      
-      
+
+
       overlay.transition()
-      .attr("x", -160)
-      .attr("width", 200)
-      .attr("height", 200);
-      
+        .attr("x", -160)
+        .attr("width", 200)
+        .attr("height", 200);
+
       let div = overlay.append("xhtml:div")
-      .attr("class", "stats")
-      .style({
-        background: color(d.TOI),
-        color: textColor(d.TOI),
-        opacity: .9
-      })
-      .append("div")
-      .html(
-        `<h5 class="name">${d.Player}</h5>
-        <p>Age: ${d.Age}</p>
-        <p>Position: ${d.Pos}</p>
-        <p>Games Played: ${d.GP}</p>
-        <p>Goals: ${d.G}</p>
-        <p>Assists: ${d.A}</p>
-        <p>Points: ${d.PTS}</p>
-        <h5 class="separator"></h5>`
-      );
+        .attr("class", "stats")
+        .style({
+          background: color(d[stat]),
+          color: textColor(d[stat]),
+          opacity: .9
+        })
+        .append("div")
+        .html(
+          `<h5 class="name">${d.Player}</h5>
+          <p>Age: ${d.Age}</p>
+          <p>Position: ${d.Pos}</p>
+          <p>Games Played: ${d.GP}</p>
+          <p>Minutes Played: ${d.TOI}</p>
+          <p>Minutes Played / Game: ${d.ATOI}</p>
+          <p>Goals: ${d.G}</p>
+          <p>Assists: ${d.A}</p>
+          <p>Points: ${d.PTS}</p>
+          <h5 class="separator"></h5>`
+          );
 
     })
     .on("mouseout", function (d) {
@@ -56,34 +57,62 @@ const createElements = (svg, elem) => {
     });
 
   let color = d3.scale.linear()
-    .domain([0, 3500])
+    // .domain([0, 3500])
     .range(["#EEEEEE", "#992932"]);
 
 
   let textColor = d3.scale.quantize()
-    .domain([0, 3500])
+    // .domain([0, 3500])
     .range(["black", "#EEEEEE"]);
+
+  if (stat === 'TOI') {
+    color.domain([0, 2500]);
+    textColor.domain([0, 2500]);
+  } else if (stat === 'G') {
+    color.domain([0, 35]);
+    textColor.domain([0, 35]);
+  } else if (stat === 'A') {
+    color.domain([0, 40]);
+    textColor.domain([0, 40]);
+  } else if (stat === 'PTS') {
+    color.domain([0, 80]);
+    textColor.domain([0, 80]);
+  }
 
   let rect = elemEnter.append("rect")
     .attr("width", 40)
     .attr("height", 40)
-    .attr("fill", d => color(d.TOI))
+    .attr("fill", d => color(d[stat]))
+    // .attr("x", 112)
     .attr("y", -100)
     .transition()
     .duration(1500)
-    .attr("y", (d, i) => (i * 50) + 150);
+    .attr("y", (d, i) => (i * 50) + 180);
 
   elemEnter.append("text")
     .attr("x", 6)
     .attr("y", -100)
-    .attr("fill", d => textColor(d.TOI))
+    .attr("fill", d => textColor(d[stat]))
     .attr("font-weight", 200)
     .text(function (d) {
-      return d.TOI;
+      return d[stat];
     })
     .transition()
     .duration(1900)
-    .attr("y", (d, i) => (i * 50) + 175);
+    .attr("y", (d, i) => (i * 50) + 205);
+};
+
+const showStat = () => {
+
+  let element = d3.select("#stat").node();
+  let stat = element.options[element.selectedIndex].value;
+
+  for (let i = 6; i <= 17; i++) {
+    drawSeason(i, stat);
+  }
+
+  season18(stat);
+
 };
 
 const createOverlays = svg => {
@@ -94,7 +123,7 @@ const createOverlays = svg => {
     .attr("class", "overlays");
 };
 
-const season18 = () => {
+const season18 = (stat) => {
   let svg = d3.select(".chart18")
     .append("svg")
     .attr("width", 200)
@@ -104,203 +133,256 @@ const season18 = () => {
 
   d3.csv("./assets/csv/17-18.csv", function (data18) {
     let elem = svg.select("g.boxes").selectAll("g rect").data(data18);
-    createElements(svg, elem);
+    createElements(svg, elem, stat);
 
     elem.enter()
       .append("text")
       .attr("x", 60)
-      .attr("y", (d, i) => (i * 50) + 175)
+      .attr("y", (d, i) => (i * 50) + 205)
       .attr("fill", "black")
       .attr("font-weight", 600)
       .text(function (d) {
-        return d.Player;
+        return `${d.Player} - ${d.Pos}`;
       });
 
   });
 };
 
-const season17 = () => {
-  let svg = d3.select(".chart17")
-    .append("svg")
-    .attr("width", 50)
-    .attr("height", 1000);
+const drawSeason = (year, stat) => {
+  let svg;
 
-  createOverlays(svg);
+  if (year < 10) {
+    svg = d3.select(`.chart0${year}`)
+      .append("svg")
+      .attr("width", 50)
+      .attr("height", 1000);
 
-  d3.csv("./assets/csv/16-17.csv", function (data17) {
-    let elem = svg.select("g.boxes").selectAll("g rect").data(data17);
-    createElements(svg, elem);
-  });
+    createOverlays(svg);
+
+    d3.csv(`./assets/csv/0${year - 1}-0${year}.csv`, function (data) {
+      let elem = svg.select("g.boxes").selectAll("g rect").data(data);
+      createElements(svg, elem, stat);
+    });
+  } else if (year === 10) {
+    svg = d3.select(`.chart10`)
+      .append("svg")
+      .attr("width", 50)
+      .attr("height", 1000);
+
+    createOverlays(svg);
+
+    d3.csv(`./assets/csv/09-10.csv`, function (data) {
+      let elem = svg.select("g.boxes").selectAll("g rect").data(data);
+      createElements(svg, elem, stat);
+    });
+  } else {
+    svg = d3.select(`.chart${year}`)
+      .append("svg")
+      .attr("width", 50)
+      .attr("height", 1000);
+
+    createOverlays(svg);
+
+    d3.csv(`./assets/csv/${year - 1}-${year}.csv`, function (data) {
+      let elem = svg.select("g.boxes").selectAll("g rect").data(data);
+      createElements(svg, elem, stat);
+    });
+  }
 };
-
-const season16 = () => {
-  let svg = d3.select(".chart16")
-    .append("svg")
-    .attr("width", 50)
-    .attr("height", 1000);
-
-  createOverlays(svg);
-
-  d3.csv("./assets/csv/15-16.csv", function (data16) {
-    let elem = svg.select("g.boxes").selectAll("g rect").data(data16);
-    createElements(svg, elem);
-  });
-};
-
-const season15 = () => {
-  let svg = d3.select(".chart15")
-    .append("svg")
-    .attr("width", 50)
-    .attr("height", 1000);
-
-  createOverlays(svg);
-
-  d3.csv("./assets/csv/14-15.csv", function (data15) {
-    let elem = svg.select("g.boxes").selectAll("g rect").data(data15);
-    createElements(svg, elem);
-  });
-};
-
-const season14 = () => {
-  let svg = d3.select(".chart14")
-    .append("svg")
-    .attr("width", 50)
-    .attr("height", 1000);
-
-  createOverlays(svg);
-
-  d3.csv("./assets/csv/13-14.csv", function (data14) {
-    let elem = svg.select("g.boxes").selectAll("g rect").data(data14);
-    createElements(svg, elem);
-  });
-};
-
-const season13 = () => {
-  let svg = d3.select(".chart13")
-    .append("svg")
-    .attr("width", 50)
-    .attr("height", 1000);
-
-  createOverlays(svg);
-
-  d3.csv("./assets/csv/12-13.csv", function (data13) {
-    let elem = svg.select("g.boxes").selectAll("g rect").data(data13);
-    createElements(svg, elem);
-  });
-};
-
-const season12 = () => {
-  let svg = d3.select(".chart12")
-    .append("svg")
-    .attr("width", 50)
-    .attr("height", 1000);
-
-  createOverlays(svg);
-
-  d3.csv("./assets/csv/11-12.csv", function (data12) {
-    let elem = svg.select("g.boxes").selectAll("g rect").data(data12);
-    createElements(svg, elem);
-  });
-};
-
-const season11 = () => {
-  let svg = d3.select(".chart11")
-    .append("svg")
-    .attr("width", 50)
-    .attr("height", 1000);
-
-  createOverlays(svg);
-
-  d3.csv("./assets/csv/10-11.csv", function (data11) {
-    let elem = svg.select("g.boxes").selectAll("g rect").data(data11);
-    createElements(svg, elem);
-  });
-};
-
-const season10 = () => {
-  let svg = d3.select(".chart10")
-    .append("svg")
-    .attr("width", 50)
-    .attr("height", 1000);
-
-  createOverlays(svg);
-
-  d3.csv("./assets/csv/09-10.csv", function (data10) {
-    let elem = svg.select("g.boxes").selectAll("g rect").data(data10);
-    createElements(svg, elem);
-  });
-};
-
-const season09 = () => {
-  let svg = d3.select(".chart09")
-    .append("svg")
-    .attr("width", 50)
-    .attr("height", 1000);
-
-  createOverlays(svg);
-
-  d3.csv("./assets/csv/08-09.csv", function (data09) {
-    let elem = svg.select("g.boxes").selectAll("g rect").data(data09);
-    createElements(svg, elem);
-  });
-};
-
-const season08 = () => {
-  let svg = d3.select(".chart08")
-    .append("svg")
-    .attr("width", 50)
-    .attr("height", 1000);
-
-  createOverlays(svg);
-
-  d3.csv("./assets/csv/07-08.csv", function (data08) {
-    let elem = svg.select("g.boxes").selectAll("g rect").data(data08);
-    createElements(svg, elem);
-  });
-};
-
-const season07 = () => {
-  let svg = d3.select(".chart07")
-    .append("svg")
-    .attr("width", 50)
-    .attr("height", 1000);
-
-  createOverlays(svg);
-
-  d3.csv("./assets/csv/06-07.csv", function (data07) {
-    let elem = svg.select("g.boxes").selectAll("g rect").data(data07);
-    createElements(svg, elem);
-  });
-};
-
-const season06 = () => {
-  let svg = d3.select(".chart06")
-    .append("svg")
-    .attr("width", 50)
-    .attr("height", 1000)
-    .attr("x", 200);
-
-  createOverlays(svg);
-
-  d3.csv("./assets/csv/05-06.csv", function (data06) {
-    let elem = svg.select("g.boxes").selectAll("g rect").data(data06);
-    createElements(svg, elem);
-  });
-};
-
 
 document.addEventListener("DOMContentLoaded", () => {
-  season06();
-  season07();
-  season08();
-  season09();
-  season10();
-  season11();
-  season12();
-  season13();
-  season14();
-  season15();
-  season16();
-  season17();
-  season18();
+  document.getElementById("stat").addEventListener('change', (e) => {
+    d3.selectAll('svg').remove();
+    showStat();
+  });
+
+  let stat = showStat();
+
+  // for (let i = 6; i <= 17; i++) {
+  //   drawSeason(i, stat)
+  // }
+
+  // season06(stat);
+  // season07(stat);
+  // season08(stat);
+  // season09(stat);
+  // season10(stat);
+  // season11(stat);
+  // season12(stat);
+  // season13(stat);
+  // season14(stat);
+  // season15(stat);
+  // season16(stat);
+  // drawSeason(17, stat)
+  // // season17(stat);
+  // season18(stat);
 });
+
+// const season17 = (value) => {
+//   let svg = d3.select(".chart17")
+//     .append("svg")
+//     .attr("width", 50)
+//     .attr("height", 1000);
+
+//   createOverlays(svg);
+
+//   d3.csv("./assets/csv/16-17.csv", function (booty) {
+//     let elem = svg.select("g.boxes").selectAll("g rect").data(booty);
+//     createElements(svg, elem, value);
+//   });
+// };
+
+// const season16 = () => {
+//   let svg = d3.select(".chart16")
+//     .append("svg")
+//     .attr("width", 50)
+//     .attr("height", 1000);
+
+//   createOverlays(svg);
+
+//   d3.csv("./assets/csv/15-16.csv", function (data16) {
+//     let elem = svg.select("g.boxes").selectAll("g rect").data(data16);
+//     createElements(svg, elem);
+//   });
+// };
+
+// const season15 = () => {
+//   let svg = d3.select(".chart15")
+//     .append("svg")
+//     .attr("width", 50)
+//     .attr("height", 1000);
+
+//   createOverlays(svg);
+
+//   d3.csv("./assets/csv/14-15.csv", function (data15) {
+//     let elem = svg.select("g.boxes").selectAll("g rect").data(data15);
+//     createElements(svg, elem);
+//   });
+// };
+
+// const season14 = () => {
+//   let svg = d3.select(".chart14")
+//     .append("svg")
+//     .attr("width", 50)
+//     .attr("height", 1000);
+
+//   createOverlays(svg);
+
+//   d3.csv("./assets/csv/13-14.csv", function (data14) {
+//     let elem = svg.select("g.boxes").selectAll("g rect").data(data14);
+//     createElements(svg, elem);
+//   });
+// };
+
+// const season13 = () => {
+//   let svg = d3.select(".chart13")
+//     .append("svg")
+//     .attr("width", 50)
+//     .attr("height", 1000);
+
+//   createOverlays(svg);
+
+//   d3.csv("./assets/csv/12-13.csv", function (data13) {
+//     let elem = svg.select("g.boxes").selectAll("g rect").data(data13);
+//     createElements(svg, elem);
+//   });
+// };
+
+// const season12 = () => {
+//   let svg = d3.select(".chart12")
+//     .append("svg")
+//     .attr("width", 50)
+//     .attr("height", 1000);
+
+//   createOverlays(svg);
+
+//   d3.csv("./assets/csv/11-12.csv", function (data12) {
+//     let elem = svg.select("g.boxes").selectAll("g rect").data(data12);
+//     createElements(svg, elem);
+//   });
+// };
+
+// const season11 = () => {
+//   let svg = d3.select(".chart11")
+//     .append("svg")
+//     .attr("width", 50)
+//     .attr("height", 1000);
+
+//   createOverlays(svg);
+
+//   d3.csv("./assets/csv/10-11.csv", function (data11) {
+//     let elem = svg.select("g.boxes").selectAll("g rect").data(data11);
+//     createElements(svg, elem);
+//   });
+// };
+
+// const season10 = () => {
+//   let svg = d3.select(".chart10")
+//     .append("svg")
+//     .attr("width", 50)
+//     .attr("height", 1000);
+
+//   createOverlays(svg);
+
+//   d3.csv("./assets/csv/09-10.csv", function (data10) {
+//     let elem = svg.select("g.boxes").selectAll("g rect").data(data10);
+//     createElements(svg, elem);
+//   });
+// };
+
+// const season09 = (value) => {
+//   let svg = d3.select(".chart09")
+//     .append("svg")
+//     .attr("width", 50)
+//     .attr("height", 1000);
+
+//   createOverlays(svg);
+
+//   d3.csv("./assets/csv/08-09.csv", function (data09) {
+//     let elem = svg.select("g.boxes").selectAll("g rect").data(data09);
+//     createElements(svg, elem, value);
+//   });
+// };
+
+// const season08 = () => {
+//   let svg = d3.select(".chart08")
+//     .append("svg")
+//     .attr("width", 50)
+//     .attr("height", 1000);
+
+//   createOverlays(svg);
+
+//   d3.csv("./assets/csv/07-08.csv", function (data08) {
+//     let elem = svg.select("g.boxes").selectAll("g rect").data(data08);
+//     createElements(svg, elem);
+//   });
+// };
+
+// const season07 = () => {
+//   let svg = d3.select(".chart07")
+//     .append("svg")
+//     .attr("width", 50)
+//     .attr("height", 1000);
+
+//   createOverlays(svg);
+
+//   d3.csv("./assets/csv/06-07.csv", function (data07) {
+//     let elem = svg.select("g.boxes").selectAll("g rect").data(data07);
+//     createElements(svg, elem);
+//   });
+// };
+
+// const season06 = () => {
+//   let svg = d3.select(".chart06")
+//     .append("svg")
+//     .attr("width", 50)
+//     .attr("height", 1000)
+//     .attr("x", 200);
+
+//   createOverlays(svg);
+
+//   d3.csv("./assets/csv/05-06.csv", function (data06) {
+//     let elem = svg.select("g.boxes").selectAll("g rect").data(data06);
+//     createElements(svg, elem);
+//   });
+// };

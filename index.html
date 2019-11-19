@@ -1,62 +1,77 @@
 <html>
-  <head>
-    <script src="https://d3js.org/d3.v3.min.js"></script>
-    <link rel="stylesheet" href="index.css">
-    <script src="./index.js"></script>
-    <link rel="shortcut icon" href="./assets/weagle.png" type="image/x-icon">
-  </head>
 
-  <body>
-    <h3>Washington Capitals 2017-2018 Roster</h3>
-    <div class="description">
-      <p>Timeline begins the season player first played for the Capitals</p>
-      <p>Darker colors indicate more minutes played</p>
-    </div>
-    <img src="./assets/caps_logo.png" class="logo">
-    <img src="./assets/cup_finals_logo.png" class="finals-logo">
-      <div class="years">
-        <p>'05-06</p>
-        <p>'06-07</p>
-        <p>'07-08</p>
-        <p>'08-09</p>
-        <p>'09-10</p>
-        <p>'10-11</p>
-        <p>'11-12</p>
-        <p>'12-13</p>
-        <p>'13-14</p>
-        <p>'14-15</p>
-        <p>'15-16</p>
-        <p>'16-17</p>
-        <p>'17-18</p>
-      </div>
+<head>
+  <script src="https://d3js.org/d3.v3.min.js"></script>
+  <!-- <script src="https://d3js.org/d3.v5.min.js"></script> -->
 
-    <div class="chart06"></div>
-    
-    <div class="chart07"></div>
-    
-    <div class="chart08"></div>
-    
-    <div class="chart09"></div>
-    
-    <div class="chart10"></div>
-    
-    <div class="chart11"></div>
-    
-    <div class="chart12"></div>
+  <link rel="stylesheet" href="index.css">
+  <script src="./index.js"></script>
+  <link rel="shortcut icon" href="./assets/weagle.png" type="image/x-icon">
+</head>
 
-    <div class="chart13"></div>
-    
-    <div class="chart14"></div>
-    
-    <div class="chart15"></div>
-    
-    <div class="chart16"></div>
-    
-    <div class="chart17"></div>
-    
-    <div class="chart18"></div>
-    
-    
+<body>
+  <h3>Washington Capitals 2017-2018 Roster</h3>
+  <div class="description">
+    <p>Timeline begins the season player first played for the Capitals</p>
+    <p>Darker colors indicate more minutes played</p>
+  </div>
+  <img src="./assets/caps_logo.png" class="logo">
+  <img src="./assets/cup_finals_logo.png" class="finals-logo">
 
-  </body>
+  <div class="sort">
+    <p>Change Stat: </p>
+    <select id="stat">
+      <option value="TOI">Minutes Played</option>
+      <option value="G">Goals</option>
+      <option value="A">Assists</option>
+      <option value="PTS">Points</option>
+    </select>
+  </div>
+
+  <div class="years">
+    <p>'05-06</p>
+    <p>'06-07</p>
+    <p>'07-08</p>
+    <p>'08-09</p>
+    <p>'09-10</p>
+    <p>'10-11</p>
+    <p>'11-12</p>
+    <p>'12-13</p>
+    <p>'13-14</p>
+    <p>'14-15</p>
+    <p>'15-16</p>
+    <p>'16-17</p>
+    <p>'17-18</p>
+  </div>
+
+  <div class="chart06"></div>
+
+  <div class="chart07"></div>
+
+  <div class="chart08"></div>
+
+  <div class="chart09"></div>
+
+  <div class="chart10"></div>
+
+  <div class="chart11"></div>
+
+  <div class="chart12"></div>
+
+  <div class="chart13"></div>
+
+  <div class="chart14"></div>
+
+  <div class="chart15"></div>
+
+  <div class="chart16"></div>
+
+  <div class="chart17"></div>
+
+  <div class="chart18"></div>
+
+
+
+</body>
+
 </html>

@@ -9,6 +9,7 @@ h3 {
   position: absolute;
   width: 400px;
   top: 2px;
+  left: 181px;
 }
 
 .description {
@@ -16,6 +17,7 @@ h3 {
   font-family: sans-serif;
   width: 500px;
   top: 45px;
+  left: 181px;
 }
 
 .description p {
@@ -28,8 +30,9 @@ h3 {
   position: absolute;
   height: 100px;
   width: 180px;
-  top: 9px;
-  left: 605px;
+  top: 30px;
+  /* left: 605px; */
+  left: 610px;
   /* display: none; */
 }
 
@@ -37,9 +40,50 @@ h3 {
   position: absolute;
   height: 100px;
   width: 80px;
-  top: 9px;
-  left: 840px;
+  top: 30px;
+  /* left: 840px; */
+  left: 880px;
   /* display: none; */
+}
+
+.sort {
+  font-family: sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  position: absolute;
+  top: 97px;
+  left: 181px;
+  /* width: 500px; */
+}
+
+#stat {
+  /* display: inline-block; */
+  position: absolute;
+  appearance: none;
+  font-size: 12px;
+  height: 30px;
+  width: 120px;
+  padding: 3px;
+  top: 7px;
+  left: 100px;
+  /* -webkit-appearance: none; */
+    /* -moz-appearance: none; */
+}
+
+#stat:hover {
+  border: 1px solid #368CD9;
+  transition: .3s;
+  opacity: 0.8;
+}
+
+#stat:focus {
+  border: 2px solid #368CD9;
+  outline: none;
+}
+
+div[class^="chart"] {
+  /* background: red; */
+  left: 200px;
 }
 
 .years {
@@ -51,15 +95,13 @@ h3 {
   font-weight: 600;
   width: 634px;
   top: 110px;
+  top: 140px;
+  /* left: 181px; */
   left: 181px;
 }
 
 svg {
   overflow: visible;
-}
-
-.chart18 {
-  /* align-items: right; */
 }
 
 text {
