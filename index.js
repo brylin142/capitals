@@ -9,9 +9,7 @@ const createElements = (svg, elem, stat) => {
         // .attr("x", 112)
         .attr("y", (i * 50) + 180)
         .attr("class", "popout");
-      // debugger
 
-      // take a look
       // let border = div.append("rect")
       //   .attr("width", 200)
       //   .attr("height", 200)
@@ -19,7 +17,6 @@ const createElements = (svg, elem, stat) => {
       //   .attr("stroke-width", 2)
       //   .attr("x", 0)
       //   .attr("y", (i * 50) + 100);
-
 
       overlay.transition()
         .attr("x", -160)
@@ -57,7 +54,6 @@ const createElements = (svg, elem, stat) => {
     });
 
   let color = d3.scale.linear()
-    // .domain([0, 3500])
     .range(["#EEEEEE", "#992932"]);
 
 
@@ -198,191 +194,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let stat = showStat();
 
-  // for (let i = 6; i <= 17; i++) {
-  //   drawSeason(i, stat)
-  // }
-
-  // season06(stat);
-  // season07(stat);
-  // season08(stat);
-  // season09(stat);
-  // season10(stat);
-  // season11(stat);
-  // season12(stat);
-  // season13(stat);
-  // season14(stat);
-  // season15(stat);
-  // season16(stat);
-  // drawSeason(17, stat)
-  // // season17(stat);
-  // season18(stat);
 });
-
-// const season17 = (value) => {
-//   let svg = d3.select(".chart17")
-//     .append("svg")
-//     .attr("width", 50)
-//     .attr("height", 1000);
-
-//   createOverlays(svg);
-
-//   d3.csv("./assets/csv/16-17.csv", function (booty) {
-//     let elem = svg.select("g.boxes").selectAll("g rect").data(booty);
-//     createElements(svg, elem, value);
-//   });
-// };
-
-// const season16 = () => {
-//   let svg = d3.select(".chart16")
-//     .append("svg")
-//     .attr("width", 50)
-//     .attr("height", 1000);
-
-//   createOverlays(svg);
-
-//   d3.csv("./assets/csv/15-16.csv", function (data16) {
-//     let elem = svg.select("g.boxes").selectAll("g rect").data(data16);
-//     createElements(svg, elem);
-//   });
-// };
-
-// const season15 = () => {
-//   let svg = d3.select(".chart15")
-//     .append("svg")
-//     .attr("width", 50)
-//     .attr("height", 1000);
-
-//   createOverlays(svg);
-
-//   d3.csv("./assets/csv/14-15.csv", function (data15) {
-//     let elem = svg.select("g.boxes").selectAll("g rect").data(data15);
-//     createElements(svg, elem);
-//   });
-// };
-
-// const season14 = () => {
-//   let svg = d3.select(".chart14")
-//     .append("svg")
-//     .attr("width", 50)
-//     .attr("height", 1000);
-
-//   createOverlays(svg);
-
-//   d3.csv("./assets/csv/13-14.csv", function (data14) {
-//     let elem = svg.select("g.boxes").selectAll("g rect").data(data14);
-//     createElements(svg, elem);
-//   });
-// };
-
-// const season13 = () => {
-//   let svg = d3.select(".chart13")
-//     .append("svg")
-//     .attr("width", 50)
-//     .attr("height", 1000);
-
-//   createOverlays(svg);
-
-//   d3.csv("./assets/csv/12-13.csv", function (data13) {
-//     let elem = svg.select("g.boxes").selectAll("g rect").data(data13);
-//     createElements(svg, elem);
-//   });
-// };
-
-// const season12 = () => {
-//   let svg = d3.select(".chart12")
-//     .append("svg")
-//     .attr("width", 50)
-//     .attr("height", 1000);
-
-//   createOverlays(svg);
-
-//   d3.csv("./assets/csv/11-12.csv", function (data12) {
-//     let elem = svg.select("g.boxes").selectAll("g rect").data(data12);
-//     createElements(svg, elem);
-//   });
-// };
-
-// const season11 = () => {
-//   let svg = d3.select(".chart11")
-//     .append("svg")
-//     .attr("width", 50)
-//     .attr("height", 1000);
-
-//   createOverlays(svg);
-
-//   d3.csv("./assets/csv/10-11.csv", function (data11) {
-//     let elem = svg.select("g.boxes").selectAll("g rect").data(data11);
-//     createElements(svg, elem);
-//   });
-// };
-
-// const season10 = () => {
-//   let svg = d3.select(".chart10")
-//     .append("svg")
-//     .attr("width", 50)
-//     .attr("height", 1000);
-
-//   createOverlays(svg);
-
-//   d3.csv("./assets/csv/09-10.csv", function (data10) {
-//     let elem = svg.select("g.boxes").selectAll("g rect").data(data10);
-//     createElements(svg, elem);
-//   });
-// };
-
-// const season09 = (value) => {
-//   let svg = d3.select(".chart09")
-//     .append("svg")
-//     .attr("width", 50)
-//     .attr("height", 1000);
-
-//   createOverlays(svg);
-
-//   d3.csv("./assets/csv/08-09.csv", function (data09) {
-//     let elem = svg.select("g.boxes").selectAll("g rect").data(data09);
-//     createElements(svg, elem, value);
-//   });
-// };
-
-// const season08 = () => {
-//   let svg = d3.select(".chart08")
-//     .append("svg")
-//     .attr("width", 50)
-//     .attr("height", 1000);
-
-//   createOverlays(svg);
-
-//   d3.csv("./assets/csv/07-08.csv", function (data08) {
-//     let elem = svg.select("g.boxes").selectAll("g rect").data(data08);
-//     createElements(svg, elem);
-//   });
-// };
-
-// const season07 = () => {
-//   let svg = d3.select(".chart07")
-//     .append("svg")
-//     .attr("width", 50)
-//     .attr("height", 1000);
-
-//   createOverlays(svg);
-
-//   d3.csv("./assets/csv/06-07.csv", function (data07) {
-//     let elem = svg.select("g.boxes").selectAll("g rect").data(data07);
-//     createElements(svg, elem);
-//   });
-// };
-
-// const season06 = () => {
-//   let svg = d3.select(".chart06")
-//     .append("svg")
-//     .attr("width", 50)
-//     .attr("height", 1000)
-//     .attr("x", 200);
-
-//   createOverlays(svg);
-
-//   d3.csv("./assets/csv/05-06.csv", function (data06) {
-//     let elem = svg.select("g.boxes").selectAll("g rect").data(data06);
-//     createElements(svg, elem);
-//   });
-// };
