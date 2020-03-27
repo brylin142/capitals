@@ -61,41 +61,135 @@ const createElements = (svg, elem, stat) => {
     // .domain([0, 3500])
     .range(["black", "#EEEEEE"]);
 
+  // let rect = elemEnter.append("rect")
+  //   .attr("width", 40)
+  //   .attr("height", 40)
+  //   .attr("fill", d => color(d[stat]))
+  //   // .attr("x", 112)
+  //   .attr("y", -100)
+  //   .transition()
+  //   .duration(1500)
+  //   .attr("y", (d, i) => (i * 50) + 180);
+  let rect;
+
   if (stat === 'TOI') {
     color.domain([0, 2500]);
     textColor.domain([0, 2500]);
+
+    rect = elemEnter.append("rect")
+      .attr("width", 40)
+      .attr("height", 40)
+      .attr("fill", d => color(d[stat]))
+      // .attr("x", 112)
+      .attr("y", -100)
+      .transition()
+      .duration(1500)
+      .attr("y", (d, i) => (i * 50) + 180);
+
+    elemEnter.append("text")
+      .attr("x", 6)
+      .attr("y", -100)
+      .attr("fill", d => textColor(d[stat]))
+      .attr("font-weight", 200)
+      .text(function (d) {
+        return d[stat];
+      })
+      .transition()
+      .duration(1900)
+      .attr("y", (d, i) => (i * 50) + 205);
+
   } else if (stat === 'G') {
     color.domain([0, 35]);
     textColor.domain([0, 35]);
+
+    rect = elemEnter.append("rect")
+      .attr("width", 40)
+      .attr("height", 40)
+      .attr("fill", d => color(d[stat]))
+      // .attr("x", 112)
+      .attr("y", -100)
+      .transition()
+      .duration(1500)
+      .attr("y", (d, i) => (i * 50) + 180);
+
+    elemEnter.append("text")
+      .attr("x", 13)
+      .attr("y", -100)
+      .attr("fill", d => textColor(d[stat]))
+      .attr("font-weight", 200)
+      .text(function (d) {
+        return d[stat];
+      })
+      .transition()
+      .duration(1900)
+      .attr("y", (d, i) => (i * 50) + 205);
+
+
   } else if (stat === 'A') {
     color.domain([0, 40]);
     textColor.domain([0, 40]);
+
+    rect = elemEnter.append("rect")
+      .attr("width", 40)
+      .attr("height", 40)
+      .attr("fill", d => color(d[stat]))
+      // .attr("x", 112)
+      .attr("y", -100)
+      .transition()
+      .duration(1500)
+      .attr("y", (d, i) => (i * 50) + 180);
+
+    elemEnter.append("text")
+      .attr("x", 13)
+      .attr("y", -100)
+      .attr("fill", d => textColor(d[stat]))
+      .attr("font-weight", 200)
+      .text(function (d) {
+        return d[stat];
+      })
+      .transition()
+      .duration(1900)
+      .attr("y", (d, i) => (i * 50) + 205);
+
   } else if (stat === 'PTS') {
     color.domain([0, 80]);
     textColor.domain([0, 80]);
+
+    rect = elemEnter.append("rect")
+      .attr("width", 40)
+      .attr("height", 40)
+      .attr("fill", d => color(d[stat]))
+      // .attr("x", 112)
+      .attr("y", -100)
+      .transition()
+      .duration(1500)
+      .attr("y", (d, i) => (i * 50) + 180);
+
+    elemEnter.append("text")
+      .attr("x", 10)
+      .attr("y", -100)
+      .attr("fill", d => textColor(d[stat]))
+      .attr("font-weight", 200)
+      .text(function (d) {
+        return d[stat];
+      })
+      .transition()
+      .duration(1900)
+      .attr("y", (d, i) => (i * 50) + 205);
+      
   }
 
-  let rect = elemEnter.append("rect")
-    .attr("width", 40)
-    .attr("height", 40)
-    .attr("fill", d => color(d[stat]))
-    // .attr("x", 112)
-    .attr("y", -100)
-    .transition()
-    .duration(1500)
-    .attr("y", (d, i) => (i * 50) + 180);
-
-  elemEnter.append("text")
-    .attr("x", 6)
-    .attr("y", -100)
-    .attr("fill", d => textColor(d[stat]))
-    .attr("font-weight", 200)
-    .text(function (d) {
-      return d[stat];
-    })
-    .transition()
-    .duration(1900)
-    .attr("y", (d, i) => (i * 50) + 205);
+  // elemEnter.append("text")
+  //   .attr("x", 6)
+  //   .attr("y", -100)
+  //   .attr("fill", d => textColor(d[stat]))
+  //   .attr("font-weight", 200)
+  //   .text(function (d) {
+  //     return d[stat];
+  //   })
+  //   .transition()
+  //   .duration(1900)
+  //   .attr("y", (d, i) => (i * 50) + 205);
 };
 
 const showStat = () => {
